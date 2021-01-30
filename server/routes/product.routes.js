@@ -6,6 +6,7 @@ const {
   newProduct,
   getSingleProduct,
   updateProduct,
+  deleteProduct,
 } = require("../controllers/product.controller");
 
 /**
@@ -35,5 +36,12 @@ router.route("/products/new").post(newProduct);
  * ACCESS:  PRIVATE
  */
 router.route("/products/:id").put(updateProduct);
+
+/**
+ * DESC :   DELETE A PRODUCT
+ * METHOD:  DELETE
+ * ACCESS:  PRIVATE
+ */
+router.route("/products/:id").delete(deleteProduct);
 
 module.exports = router;
