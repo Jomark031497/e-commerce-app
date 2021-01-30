@@ -8,7 +8,7 @@ const {
   updateProduct,
   deleteProduct,
 } = require("../controllers/product.controller");
-const { isAuthenticated } = require("../middlewares/auth");
+const { isAuthenticated, authorizeRoles } = require("../middlewares/auth");
 
 /**
  * DESC :   GET ALL PRODUCTS
@@ -29,20 +29,26 @@ router.route("/products/:id").get(getSingleProduct);
  * METHOD:  POST
  * ACCESS:  PRIVATE
  */
-router.route("/products/new").post(isAuthenticated, newProduct);
+router
+  .route("/products/new")
+  .post(isAuthenticated, authorizeRoles("admin"), newProduct);
 
 /**
  * DESC :   UPDATE A PRODUCT
  * METHOD:  PUT
  * ACCESS:  PRIVATE
  */
-router.route("/products/:id").put(isAuthenticated, updateProduct);
+router
+  .route("/products/:id")
+  .put(isAuthenticated, authorizeRoles("admin"), updateProduct);
 
 /**
  * DESC :   DELETE A PRODUCT
  * METHOD:  DELETE
  * ACCESS:  PRIVATE
  */
-router.route("/products/:id").delete(isAuthenticated, deleteProduct);
+router
+  .route("/products/:id")
+  .delete(isAuthenticated, authorizeRoles("admin"), deleteProduct);
 
 module.exports = router;
