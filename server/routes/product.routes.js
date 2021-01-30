@@ -8,13 +8,14 @@ const {
   updateProduct,
   deleteProduct,
 } = require("../controllers/product.controller");
+const { isAuthenticated } = require("../middlewares/auth");
 
 /**
  * DESC :   GET ALL PRODUCTS
  * METHOD:  GET
  * ACCESS:  PUBLIC
  */
-router.route("/products").get(getProducts);
+router.route("/products").get(isAuthenticated, getProducts);
 
 /**
  * DESC :   GET SINGLE PRODUCT
