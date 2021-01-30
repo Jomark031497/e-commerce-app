@@ -1,5 +1,17 @@
 const mongoose = require("mongoose");
 
+const categories = [
+  "Electronics",
+  "Cameras",
+  "Laptop",
+  "Headphones",
+  "Books",
+  "Food",
+  "Clothes/Sportwear",
+  "Beauty/Health",
+  "Outdoor",
+];
+
 const productSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -68,17 +80,5 @@ const productSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
-
-const categories = [
-  "Electronics",
-  "Cameras",
-  "Laptop",
-  "Headphones",
-  "Books",
-  "Food",
-  "Clothes/Sportwear",
-  "Beauty/Health",
-  "Outdoor",
-];
 
 module.exports = mongoose.model("Product", productSchema);
