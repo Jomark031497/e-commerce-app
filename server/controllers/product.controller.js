@@ -1,34 +1,35 @@
 const Product = require("../models/product.model");
 const ErrorHandler = require("../utils/errorHandler");
+const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
 
 // DESC:  CREATE A NEW PRODUCT
 // ROUTE: /api/v1/product/new
-exports.newProduct = async (req, res, next) => {
+exports.newProduct = catchAsyncErrors(async (req, res, next) => {
   const product = await Product.create(req.body);
 
   res.status(201).json({ success: true, product });
-};
+});
 
 // DESC:  GET ALL PRODUCTS
 // ROUTE: /api/v1/products/
-exports.getProducts = async (req, res, next) => {
+exports.getProducts = catchAsyncErrors(async (req, res, next) => {
   const products = await Product.find();
   res.status(200).json({ success: true, products, count: products.length });
-};
+});
 
 // DESC:  GET SINGLE PRODUCT
 // ROUTE: /api/v1/products/:id
-exports.getSingleProduct = async (req, res, next) => {
+exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
 
   if (!product) return next(new ErrorHandler("Product not found", 404));
 
   res.status(200).json({ success: true, product });
-};
+});
 
 // DESC:  UPDATE PRODUCT
 // ROUTE: /api/v1/products/:id
-exports.updateProduct = async (req, res, next) => {
+exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
   let product = await Product.findById(req.params.id);
   if (!product)
     return res
@@ -42,11 +43,11 @@ exports.updateProduct = async (req, res, next) => {
   });
 
   res.status(200).json({ success: true, product });
-};
+});
 
 // DESC:  DELETE PRODUCT
 // ROUTE: /api/v1/products/:id
-exports.deleteProduct = async (req, res, next) => {
+exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
 
   if (!product)
@@ -59,4 +60,4 @@ exports.deleteProduct = async (req, res, next) => {
   res
     .status(200)
     .json({ success: true, message: "Product successfully deleted" });
-};
+});
