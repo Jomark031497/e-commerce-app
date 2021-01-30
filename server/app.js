@@ -3,6 +3,7 @@ const errorMiddleware = require("./middlewares/errors");
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded());
 
 // import all routes
 const products = require("./routes/product.routes");
