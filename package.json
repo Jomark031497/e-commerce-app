@@ -1,0 +1,24 @@
+{
+  "name": "ecommerce-app",
+  "version": "1.0.0",
+  "description": "E-commerce using MERN stack",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jomark031497/e-commerce-app.git"
+  },
+  "author": "Jomark Pangan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jomark031497/e-commerce-app/issues"
+  },
+  "homepage": "https://github.com/Jomark031497/e-commerce-app#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.14"
+  }
+}
