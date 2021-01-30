@@ -7,6 +7,7 @@ const {
   loginUser,
   logoutUser,
   forgotPassword,
+  resetPassword,
 } = require("../controllers/user.controller");
 
 /**
@@ -33,8 +34,15 @@ router.route("/logout").get(logoutUser);
 /**
  * DESC :   FORGOT PASSWORD
  * METHOD:  POST
- * ACCESS:  PRIVATE
+ * ACCESS:  PUBLIC
  */
 router.route("/password/forgot").post(forgotPassword);
+
+/**
+ * DESC :   RESET PASSWORD
+ * METHOD:  PUT
+ * ACCESS:  PUBLIC
+ */
+router.route("/password/reset/:token").put(resetPassword);
 
 module.exports = router;
