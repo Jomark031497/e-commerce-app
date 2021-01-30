@@ -15,12 +15,12 @@ const { isAuthenticated } = require("../middlewares/auth");
  * METHOD:  GET
  * ACCESS:  PUBLIC
  */
-router.route("/products").get(isAuthenticated, getProducts);
+router.route("/products").get(getProducts);
 
 /**
  * DESC :   GET SINGLE PRODUCT
  * METHOD:  GET
- * ACCESS:  PRIVATE
+ * ACCESS:  PUBLIC
  */
 router.route("/products/:id").get(getSingleProduct);
 
@@ -29,20 +29,20 @@ router.route("/products/:id").get(getSingleProduct);
  * METHOD:  POST
  * ACCESS:  PRIVATE
  */
-router.route("/products/new").post(newProduct);
+router.route("/products/new").post(isAuthenticated, newProduct);
 
 /**
  * DESC :   UPDATE A PRODUCT
  * METHOD:  PUT
  * ACCESS:  PRIVATE
  */
-router.route("/products/:id").put(updateProduct);
+router.route("/products/:id").put(isAuthenticated, updateProduct);
 
 /**
  * DESC :   DELETE A PRODUCT
  * METHOD:  DELETE
  * ACCESS:  PRIVATE
  */
-router.route("/products/:id").delete(deleteProduct);
+router.route("/products/:id").delete(isAuthenticated, deleteProduct);
 
 module.exports = router;

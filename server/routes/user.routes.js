@@ -2,7 +2,11 @@ const express = require("express");
 
 const router = express.Router();
 
-const { registerUser, loginUser } = require("../controllers/user.controller");
+const {
+  registerUser,
+  loginUser,
+  logoutUser,
+} = require("../controllers/user.controller");
 
 /**
  * DESC :   REGISTER A USER
@@ -17,5 +21,12 @@ router.route("/register").post(registerUser);
  * ACCESS:  PUBLIC
  */
 router.route("/login").post(loginUser);
+
+/**
+ * DESC :   LOGOUT A USER
+ * METHOD:  GET
+ * ACCESS:  PUBLIC
+ */
+router.route("/logout").get(logoutUser);
 
 module.exports = router;

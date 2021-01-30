@@ -44,3 +44,13 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 
   sendToken(user, 200, res);
 });
+
+// DESC:  LOGOUT A USER
+// ROUTE: /api/v1/logout
+exports.logoutUser = catchAsyncErrors(async (req, res, next) => {
+  res.cookie("token", "", { expires: new Date(Date.now()), httpOnly: true });
+
+  res
+    .status(200)
+    .json({ success: true, message: "user successfully logged out" });
+});
