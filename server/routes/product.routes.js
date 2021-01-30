@@ -4,6 +4,7 @@ const router = express.Router();
 const {
   getProducts,
   newProduct,
+  getSingleProduct,
 } = require("../controllers/product.controller");
 
 /**
@@ -12,6 +13,13 @@ const {
  * ACCESS:  PUBLIC
  */
 router.route("/products").get(getProducts);
+
+/**
+ * DESC :   GET SINGLE PRODUCT
+ * METHOD:  GET
+ * ACCESS:  PRIVATE
+ */
+router.route("/products/:id").get(getSingleProduct);
 
 /**
  * DESC :   CREATE NEW PRODUCT
