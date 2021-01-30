@@ -5,6 +5,7 @@ const {
   getProducts,
   newProduct,
   getSingleProduct,
+  updateProduct,
 } = require("../controllers/product.controller");
 
 /**
@@ -27,5 +28,12 @@ router.route("/products/:id").get(getSingleProduct);
  * ACCESS:  PRIVATE
  */
 router.route("/products/new").post(newProduct);
+
+/**
+ * DESC :   UPDATE A PRODUCT
+ * METHOD:  PUT
+ * ACCESS:  PRIVATE
+ */
+router.route("/products/:id").put(updateProduct);
 
 module.exports = router;
