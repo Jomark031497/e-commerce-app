@@ -14,7 +14,9 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
 // DESC:  GET ALL PRODUCTS
 // ROUTE: /api/v1/products/
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
-  const apiFeatures = new APIFeatures(Product.find(), req.query).search();
+  const apiFeatures = new APIFeatures(Product.find(), req.query)
+    .search()
+    .filter();
   const products = await apiFeatures.query;
   res.status(200).json({ success: true, products, count: products.length });
 });
