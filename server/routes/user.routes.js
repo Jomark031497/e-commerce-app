@@ -1,5 +1,5 @@
 const express = require("express");
-const { isAuthenticated } = require("../middlewares/auth");
+const { isAuthenticated, authorizeRoles } = require("../middlewares/auth");
 const router = express.Router();
 
 const {
@@ -11,6 +11,7 @@ const {
   getUserProfile,
   updatePassword,
   updateProfile,
+  getAllUsers,
 } = require("../controllers/user.controller");
 
 /**
@@ -63,10 +64,12 @@ router.route("/me").get(isAuthenticated, getUserProfile);
 router.route("/password/update").put(isAuthenticated, updatePassword);
 
 /**
- * DESC :   UPDATE USER PROFILE
- * METHOD:  PUT
+ * DESC :   GET ALL USERS
+ * METHOD:  GET
  * ACCESS:  PRIVATE
  */
-router.route("/me/update").put(isAuthenticated, updateProfile);
+router
+  .route("/admin/users")
+  .get(isAuthenticated, authorizeRoles("admin"), getAllUsers);
 
 module.exports = router;

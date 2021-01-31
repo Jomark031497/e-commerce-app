@@ -182,3 +182,15 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     success: true,
   });
 });
+
+// DESC:  GET ALL USERS
+// ROUTE: /api/v1/admin/users
+exports.getAllUsers = catchAsyncErrors(async (req, res, next) => {
+  const users = await User.find();
+
+  res.status(200).json({
+    success: true,
+    count: users.length,
+    users,
+  });
+});
