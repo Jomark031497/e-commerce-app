@@ -9,6 +9,7 @@ const {
   deleteProduct,
   createProductReview,
   getProductReviews,
+  deleteProductReview,
 } = require("../controllers/product.controller");
 const { isAuthenticated, authorizeRoles } = require("../middlewares/auth");
 
@@ -65,6 +66,8 @@ router.route("/review").put(isAuthenticated, createProductReview);
  * METHOD:  GET
  * ACCESS:  PRIVATE
  */
-router.route("/reviews/:id").get(isAuthenticated, getProductReviews);
+router.route("/reviews").get(isAuthenticated, getProductReviews);
+
+router.route("/reviews").delete(isAuthenticated, deleteProductReview);
 
 module.exports = router;
