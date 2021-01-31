@@ -111,3 +111,13 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({ success: true });
 });
+
+// DESC:  GET ALL REVIEWS OF A PRODUCT
+// ROUTE: /api/v1/review/:id
+exports.getProductReviews = catchAsyncErrors(async (req, res, next) => {
+  const product = await Product.findById(req.params.id);
+
+  if (!product) return next(new ErrorHandler("Product not found", 404));
+
+  res.status(200).json({ success: true, reviews: product.reviews });
+});

@@ -8,6 +8,7 @@ const {
   updateProduct,
   deleteProduct,
   createProductReview,
+  getProductReviews,
 } = require("../controllers/product.controller");
 const { isAuthenticated, authorizeRoles } = require("../middlewares/auth");
 
@@ -54,9 +55,16 @@ router
 
 /**
  * DESC :   ADD PRODUCT REVIEW
- * METHOD:  put
+ * METHOD:  PUT
  * ACCESS:  PRIVATE
  */
 router.route("/review").put(isAuthenticated, createProductReview);
+
+/**
+ * DESC :   GET ALL PRODUCT REVIEWS
+ * METHOD:  GET
+ * ACCESS:  PRIVATE
+ */
+router.route("/reviews/:id").get(isAuthenticated, getProductReviews);
 
 module.exports = router;
