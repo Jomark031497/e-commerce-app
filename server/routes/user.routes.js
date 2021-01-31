@@ -12,6 +12,7 @@ const {
   updatePassword,
   updateProfile,
   getAllUsers,
+  getUserDetails,
 } = require("../controllers/user.controller");
 
 /**
@@ -71,5 +72,14 @@ router.route("/password/update").put(isAuthenticated, updatePassword);
 router
   .route("/admin/users")
   .get(isAuthenticated, authorizeRoles("admin"), getAllUsers);
+
+/**
+ * DESC :   GET SPECIFIC USERS
+ * METHOD:  GET
+ * ACCESS:  PRIVATE
+ */
+router
+  .route("/admin/users/:id")
+  .get(isAuthenticated, authorizeRoles("admin"), getUserDetails);
 
 module.exports = router;

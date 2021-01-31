@@ -194,3 +194,16 @@ exports.getAllUsers = catchAsyncErrors(async (req, res, next) => {
     users,
   });
 });
+
+// DESC:  GET SPECIFIC USERS
+// ROUTE: /api/v1/admin/users/:id
+exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+
+  if (!user) return next(new ErrorHandler("User not found", 400));
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
