@@ -13,6 +13,7 @@ const {
   updateProfile,
   getAllUsers,
   getUserDetails,
+  updateUserProfile,
 } = require("../controllers/user.controller");
 
 /**
@@ -81,5 +82,14 @@ router
 router
   .route("/admin/users/:id")
   .get(isAuthenticated, authorizeRoles("admin"), getUserDetails);
+
+/**
+ * DESC :   UPDATE USER (ADMIN)
+ * METHOD:  PUT
+ * ACCESS:  PRIVATE
+ */
+router
+  .route("/admin/users/:id")
+  .put(isAuthenticated, authorizeRoles("admin"), updateUserProfile);
 
 module.exports = router;
