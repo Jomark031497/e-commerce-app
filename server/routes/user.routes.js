@@ -9,6 +9,7 @@ const {
   forgotPassword,
   resetPassword,
   getUserProfile,
+  updatePassword,
 } = require("../controllers/user.controller");
 
 /**
@@ -52,5 +53,12 @@ router.route("/password/reset/:token").put(resetPassword);
  * ACCESS:  PRIVATE
  */
 router.route("/me").get(isAuthenticated, getUserProfile);
+
+/**
+ * DESC :   UPDATE PASSWORD
+ * METHOD:  PUT
+ * ACCESS:  PRIVATE
+ */
+router.route("/password/update").put(isAuthenticated, updatePassword);
 
 module.exports = router;
